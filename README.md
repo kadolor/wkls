@@ -1,8 +1,12 @@
-# 🌐 `wkls`: Well-Known Locations
+# `wkls`: Well-Known Locations
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-`wkls` makes it easy to explore global administrative boundaries — from countries to cities — using clean, chainable Python syntax. It reads directly from [Overture Maps Foundation](https://overturemaps.org/) GeoParquet data (version 2025-05-21.0) hosted on the AWS Open Data Registry.
+`wkls` makes it easy to explore global administrative boundaries — from countries to cities — using clean, chainable Python syntax. 
+
+It reads [Overture Maps Foundation](https://overturemaps.org/) GeoParquet data (version 2025-05-21.0) directly from the AWS Open Data Registry.
+
+It reads directly from GeoParquet data (version 2025-05-21.0) hosted on the AWS Open Data Registry.
 
 You can instantly get geometries in formats like WKT, WKB, HexWKB, GeoJSON, and SVG:
 
@@ -98,7 +102,11 @@ The following methods return Pandas DataFrames for easy exploration:
 You can check which version of the Overture Maps dataset is being used:
 
 ```python
-print(wkls.overture_version())  # => "2025-05-21.0"
+print(wkls.overture_version())  
+```
+
+```sh
+> "2025-05-21.0"
 ```
 
 > **Note**: The `overture_version()` method is only available at the root level, not on chained objects like `wkls.us.overture_version()`.
@@ -136,7 +144,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENCE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
