@@ -4,7 +4,7 @@ from . import data
 import pandas as pd
 
 # Overture Maps dataset version
-OVERTURE_VERSION = "2025-05-21.0"
+OVERTURE_VERSION = "2025-09-24.0"
 S3_PARQUET_PATH = f"s3://overturemaps-us-west-2/release/{OVERTURE_VERSION}/theme=divisions/type=division_area/*"
 
 COUNTRY_QUERY = """
@@ -36,8 +36,8 @@ def _initialize_table():
     duckdb.load_extension("spatial")
     duckdb.sql(f"""
         CREATE TABLE IF NOT EXISTS wkls AS
-        SELECT id, country, region, subtype, name, division_id
-        FROM '{importlib.resources.files(data)}/overture_zstd22.parquet'
+        SELECT id, country, region, subtype, name
+        FROM '{importlib.resources.files(data)}/overture.zstd18.parquet'
     """)
 
 
@@ -249,7 +249,7 @@ class Wkl:
             )
 
         query = """
-            SELECT DISTINCT id, country, subtype, name, division_id
+            SELECT DISTINCT id, country, subtype, name
             FROM wkls
             WHERE subtype = 'country'
         """

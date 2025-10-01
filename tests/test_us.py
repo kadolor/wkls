@@ -2,24 +2,24 @@ import wkls
 
 
 def test_access():
-    assert wkls.us.wkt().startswith("MULTIPOLYGON (((-160.4596628 21.8841845")
-    assert wkls.us.ca.wkt().startswith("MULTIPOLYGON (((-119.621653 33.309252")
+    assert wkls.us.wkt().startswith("MULTIPOLYGON (((-160.4542228 21.9045702")
+    assert wkls.us.ca.wkt().startswith("MULTIPOLYGON (((-119.609295 33.318229")
     assert wkls.us.ny.cityofnewyork.wkt().startswith(
-        "MULTIPOLYGON (((-74.046176 40.691092"
+        "MULTIPOLYGON (((-74.046135 40.691125"
     )
     assert wkls.us.ca.sanfrancisco.wkt().startswith(
-        "MULTIPOLYGON (((-122.9915659 37.7672733"
+        "MULTIPOLYGON (((-122.9871818 37.7640703"
     )
 
-    assert len(wkls.countries()) == 219
-    assert len(wkls.us.regions()) == 51
+    assert len(wkls.countries()) == 378
+    assert len(wkls.us.regions()) == 74
     assert len(wkls["IN"]["MH"].counties()) == 36
-    assert len(wkls["IN"]["MH"].cities()) == 321
+    assert len(wkls["IN"]["MH"].cities()) == 327
 
     # Test San Francisco search returns DataFrame directly
     san_francisco_results = wkls["us"]["ca"]["%San Francisco%"]
-    assert len(san_francisco_results) == 2, (
-        "San Francisco search should return exactly two results"
+    assert len(san_francisco_results) == 3, (
+        "San Francisco search should return exactly three results"
     )
     assert "San Francisco" in san_francisco_results["name"].str.cat(sep=" "), (
         "Results should contain San Francisco"
@@ -40,7 +40,7 @@ def test_overture_version():
     assert hasattr(wkls, "overture_version")
     version = wkls.overture_version()
     assert isinstance(version, str)
-    assert "2025-05-21.0" in version  # Current version
+    assert "2025-09-24.0" in version  # Current version
     print(f"Using Overture Maps dataset version: {version}")
 
     # Should NOT work on chained objects - method should not exist
